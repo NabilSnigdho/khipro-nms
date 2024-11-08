@@ -21,8 +21,13 @@ def generate_nms_layout(name, version):
         "ignore_list": [],
         "password": "",
         "github_link": "https://raw.githubusercontent.com/NabilSnigdho/khipro-nms/refs/heads/main/Khipro.nmsLayout",
-        "keysToBlock": "41,53,40,43,53,2,55,9,3,16,12,74,4,17,13,78,5,30,18,6,44,31,19,7,45,32,20,8,57,46,33,21,9,47,34,22,10,48,35,23,11,49,36,24,12,50,37,25,13,51,38,26,52,39,27".split(
-            ","
+        "keysToBlock": list(
+            map(
+                int,
+                "41,53,40,43,53,2,55,9,3,16,12,74,4,17,13,78,5,30,18,6,44,31,19,7,45,32,20,8,57,46,33,21,9,47,34,22,10,48,35,23,11,49,36,24,12,50,37,25,13,51,38,26,52,39,27".split(
+                    ","
+                ),
+            )
         ),
         "keyMap": {
             key: val
