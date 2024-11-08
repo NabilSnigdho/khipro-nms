@@ -16,7 +16,7 @@ def generate_nms_layout(name, version):
         "phonetic": True,
         "developerName": "nabilsnigdho",
         "developerConctInfo": "Adopted from https://github.com/rank-coder/khipro-m17n",
-        "macroTranslate": True,
+        "macroTranslate": False,
         "non_zoiner_list": [],
         "ignore_list": [],
         "password": "",
