@@ -6,7 +6,17 @@ def sort_by_key_len(x):
     return sorted(x, key=lambda item: (-len(item[0])))
 
 
-juktoborno = sort_by_key_len(juktoborno_unsorted)
+def remove_fola(x):
+    en, bn = x
+    if (en[-1] == "r" and bn[-2:] == chars.B_HASANTA + chars.B_R) or (
+        en[-1] == "z" and bn[-2:] == chars.B_HASANTA + chars.B_Z
+    ):
+        en = en[0:-1]
+        bn = bn[0:-2]
+    return en, bn
+
+
+juktoborno = list(map(remove_fola, sort_by_key_len(juktoborno_unsorted)))
 
 shor = sort_by_key_len(
     [

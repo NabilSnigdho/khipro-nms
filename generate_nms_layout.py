@@ -75,9 +75,12 @@ def generate_nms_layout(name, version):
 data = generate_nms_layout("Khipro", "0.1")
 
 
-def convert(text: str) -> str:
+def convert(text: str, debug=False) -> str:
     for pattern, replacement in data["keyMap"].items():
-        text = re.sub(pattern, replacement, text)
+        new_text = re.sub(pattern, replacement, text)
+        if debug and new_text != text:
+            print(text, (pattern, replacement), new_text)
+        text = new_text
     return text
 
 
@@ -101,9 +104,12 @@ test_cases = {
     "/": chars.B_CHANDRA,
     ";;": ";",
     ";": "",
+    "mrf": "মড়",
 }
 
-for eng, bn in test_cases.items():
-    c = convert(eng)
+for en, bn in test_cases.items():
+    c = convert(en)
     if c != bn:
-        print(c)
+        print("\ntest failed for", (en, bn))
+        convert(en, True)
+        print("\n")
