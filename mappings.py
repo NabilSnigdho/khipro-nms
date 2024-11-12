@@ -16,8 +16,6 @@ def remove_fola(x):
     return en, bn
 
 
-juktoborno = list(map(remove_fola, sort_by_key_len(juktoborno_unsorted)))
-
 shor = sort_by_key_len(
     [
         ("of", "অ"),
@@ -74,6 +72,13 @@ byanjon = sort_by_key_len(
         ("rff", "ঢ়"),
     ]
 )
+
+byanjon_dict = dict(byanjon)
+juktoborno = [
+    x
+    for x in [remove_fola(x) for x in sort_by_key_len(juktoborno_unsorted)]
+    if x[0] not in byanjon_dict
+]
 
 ongko = [
     ("1", "১"),

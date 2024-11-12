@@ -3,6 +3,7 @@ import datetime
 import re
 import chars
 import mappings
+import json
 
 
 def generate_nms_layout(name, version):
@@ -29,43 +30,42 @@ def generate_nms_layout(name, version):
                 ),
             )
         ),
-        "keyMap": {
-            key: val
-            for key, val in (
-                mappings.juktoborno
-                + mappings.ongko
-                + [(r"\.([০-৯])", r".\1")]
-                + mappings.diacritic
-                + mappings.biram
-                + mappings.byanjon
-                + [
-                    ("র([ক-হড়-য়])", "র" + chars.B_HASANTA + r"\1"),
-                    ("([ক-হড়-য়])র", r"\1" + chars.B_HASANTA + "র"),
-                    ("([ক-হড়-য়])য", r"\1" + chars.B_HASANTA + "য"),
-                ]
-                + [
-                    ("uuff", chars.ZWNJ + chars.B_UU_KAR),
-                    ("uff", chars.ZWNJ + chars.B_U_KAR),
-                    ("wff", chars.ZWNJ + chars.B_RRI_KAR),
-                ]
-                + mappings.shor
-                + list(
-                    map(lambda x: ("([ক-হড়-য়f])" + x[0], r"\1" + x[1]), mappings.kar)
-                )
-                + list(map(lambda x: (x[0][:-1], x[1]), mappings.shor))
-                + [
-                    (r"[of]|(?<!;);(?!;)", ""),
-                    (";;", ";"),
-                    (r"//", "/"),
-                ]
-            )
-        },
+        "keyMap": dict(
+            mappings.juktoborno
+            + mappings.ongko
+            + [(r"\.([০-৯])", r".\1")]
+            + mappings.diacritic
+            + mappings.biram
+            + mappings.byanjon
+            + [
+                ("র([ক-হড়-য়])", "র" + chars.B_HASANTA + r"\1"),
+                ("([ক-হড়-য়])র", r"\1" + chars.B_HASANTA + "র"),
+                ("([ক-হড়-য়])য", r"\1" + chars.B_HASANTA + "য"),
+            ]
+            + [
+                ("uuff", chars.ZWNJ + chars.B_UU_KAR),
+                ("uff", chars.ZWNJ + chars.B_U_KAR),
+                ("wff", chars.ZWNJ + chars.B_RRI_KAR),
+            ]
+            + mappings.shor
+            + [("([ক-হড়-য়f])" + x[0], r"\1" + x[1]) for x in mappings.kar]
+            + [(x[0][:-1], x[1]) for x in mappings.shor]
+            + [
+                (r"[of]|(?<!;);(?!;)", ""),
+                (";;", ";"),
+                (r"//", "/"),
+            ]
+        ),
     }
 
     pickle_file_path = f"{name}.nmsLayout"
+    json_file_path = f"{name}.json"
 
     with open(pickle_file_path, "wb") as pickle_file:
         pickle.dump(data, pickle_file)
+
+    with open(json_file_path, "w", encoding='utf8') as json_file:
+        json.dump(data, json_file, indent=2, ensure_ascii=False)
 
     print(f"Layout {name} has been saved to {pickle_file_path}.")
 
@@ -105,6 +105,9 @@ test_cases = {
     ";;": ";",
     ";": "",
     "mrf": "মড়",
+    "nff": "ঞ",
+    "ngo": "ঙ",
+    "ng;": "ঙ",
 }
 
 for en, bn in test_cases.items():
