@@ -49,7 +49,7 @@ def generate_nms_layout(name, version):
             ]
             + mappings.shor
             + [("([ক-হড়-য়f])" + x[0], r"\1" + x[1]) for x in mappings.kar]
-            + [(x[0][:-1], x[1]) for x in mappings.shor]
+            + [(x[0][:-1], x[1] if x[0] not in ['oif', 'ouf'] else ({"oif": "ঐ", "ouf": "ঔ"})[x[0]]) for x in mappings.shor]
             + [
                 (r"[of]|(?<!;);(?!;)", ""),
                 (";;", ";"),
@@ -108,6 +108,8 @@ test_cases = {
     "nff": "ঞ",
     "ngo": "ঙ",
     "ng;": "ঙ",
+    "oi": "ঐ",
+    "ou": "ঔ",
 }
 
 for en, bn in test_cases.items():
