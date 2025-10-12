@@ -2,6 +2,26 @@
 
 [NMS Kontho](https://nabil-bot.github.io/Kontho/) layout for [Khipro](https://github.com/rank-coder/khipro-m17n/).
 
+## ⚠️ Repository Archived: Moving to the Official Khipro Organization
+
+I have **archived this repository** and will **no longer be actively maintaining** the Python script or the generated keyboard layout file.
+
+This decision was made because I unfortunately no longer have the time to dedicate to its proper maintenance.
+
+### Where to Find the Maintained Layout
+
+I am happy to report that the official [Khipro organization](https://github.com/KhiproKeyboard) has taken over maintenance of the layout file of Khipro for [Nms Kontho](https://nabil-bot.github.io/Kontho/)!
+
+You can find the up-to-date layout file, future improvements, and any necessary support at their official repository:
+
+[https://github.com/KhiproKeyboard/khipro-nms](https://github.com/KhiproKeyboard/khipro-nms)
+
+Please direct all future issues, pull requests, and usage questions to the repository linked above.
+
+Thank you to everyone who showed interest in this script and its generated layout. I am glad the work has found a dedicated, long-term home.
+
+---
+
 ## Usage
 
 1. Install [NMS Kontho](https://nabil-bot.github.io/Kontho/).
